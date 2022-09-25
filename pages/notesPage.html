@@ -27,34 +27,36 @@
             <ul>
                 <li onClick="location.href='../index.html'">Home</li>
                 <li>Create Note</li>
-                <li>All Note</li>
+                <li onClick="location.href='#all-notes'">All Note</li>
             </ul>
         </aside>
         <div class="content-part-one mt-2">
             <section class="input-content-children flex-col ml-1">
-                <input type="text" class="title-input" placeholder="TITLE" required>
+                <input type="text" id="note-title" class="title-input" placeholder="Title of the note" required>
                 <div class="feature-button-icon ml-1 flex-wrap">
-                    <button><i class="fa-solid fa-bold"></i></button>
-                    <button><i class="fa-solid fa-italic"></i></button>
-                    <button><i class="fa-solid fa-underline"></i></button>
-                    <button><i class="fa-regular fa-copy"></i></button>
+                    <button id="bold"><i class="icon fa-solid fa-bold"></i></button>
+                    <button id="italic"><i class="icon fa-solid fa-italic"></i></button>
+                    <button id="underline"><i class="icon fa-solid fa-underline"></i></button>
+                    <button id="copy"><i class="icon fa-regular fa-copy"></i></button>
                 </div>
-                <textarea type="text" class="description-input" placeholder="Add description here !" required></textarea>
+                <textarea type="text" id="note-content" 
+                class="description-input" placeholder="Add description here !" required></textarea>
             </section>
             <div class="content-part-two">
-                <button class="ml-1">Add Note</button>
-                <span>
-                        Set Bg-Color&nbsp;:&nbsp;
-                        <i class="fa fa-icons"></i>
-                    </span>
-                <span> Set-Pined&nbsp;:&nbsp;
-                        <input type="checkbox">
-                    </span>
+                <button id="add-note-button" class="ml-1 add-note-btn">Add Note</button>
+                <button id="reset-button" class="ml-1 add-note-btn">Reset</button>
             </div>
+                    
+            <h2 id="all-notes" class="note-text">Your Notes</h2>
+
+            <div id="notes" class="note-card note-list">
+            </div>
+
         </div>
     </div>
     </div>
     <script src="./script/sidebar.js"></script>
+    <script src="./script/functionality.js"></script>
 
 </body>
 
