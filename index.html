@@ -6,21 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Team Storm Breaker" />
-    <meta name="description"
-        content="makenotes is a notes app wehre you can make your short notes and customize it accordingly. Click on the link below to explore more." />
+    <meta name="description" content="makenotes is a notes app wehre you can make your short notes and customize it accordingly. Click on the link below to explore more." />
     <link rel="icon" href="https://img.icons8.com/color/note" />
     <title>MakeNotes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./styles/home.css" />
 </head>
 
 <body>
     <div class="home-body-content">
         <header class="note-heading">
-            <h1>Take Notes</h2>
+            <h1 class="mr-auto">Take Notes</h2>
                 <span class="menu-bar"><i class="fas fa-sun cursor"></i></span>
+                <span class="menu-bar" id="menu-bar"><i class="fas fa-bars cursor"></i></span>
         </header>
         <div class="home-body-layout ">
             <section class="home-content ">
@@ -28,14 +26,14 @@
                 <h2 class="mt-2 ">Note Taking App</h2>
                 <p>Manage your daily tasks and workflow in a modern way and boost your efficiency without any efforts
                 </p>
-                <button>CREATE NOTE</button>
+                <button onClick="location.href='/pages/notesPage.html'">CREATE NOTE</button>
                 <a href="# ">Already have an account&nbsp;??</a>
                 <a href="# ">Signup</a>
             </section>
-            <img src="https://take-notes-react.netlify.app/static/media/notesLogo.57a82fbd9501870a1c87.png "
-                class="home-img " alt="image " />
+            <img src="https://take-notes-react.netlify.app/static/media/notesLogo.57a82fbd9501870a1c87.png " class="home-img " alt="image " />
         </div>
     </div>
+    <script src="./pages/script/sidebar.js"></script>
 </body>
 
 </html>
