@@ -1,0 +1,104 @@
+@import "./home.css";
+.note-sidebar {
+    margin-right: 3rem;
+}
+
+.note-sidebar>ul>li {
+    list-style: none;
+    text-decoration: none;
+    padding: 10px 3rem;
+    max-width: 14rem;
+    min-width: fit-content;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 1.5rem 0 5px 5px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.note-sidebar>ul>li:hover {
+    background-color: var( --primary-color);
+    color: var(--white);
+}
+
+.content-part-one {
+    flex-grow: 1;
+}
+
+.input-content-children {
+    background: var( --cornsilk);
+    max-width: 1200px;
+    margin: 0 2rem;
+    border-radius: 5px;
+    box-shadow: 1px 2px 4px 5px var(--primary-complimentary);
+}
+
+.description-input,
+.title-input {
+    padding: 5px 10px;
+    font-size: 1.1rem;
+    outline: none;
+    margin: 1rem 5px;
+    background: var( --light-blue);
+    border: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.description-input {
+    height: 10rem;
+    overflow: scroll;
+    resize: none;
+}
+
+.feature-button-icon>button {
+    border: none;
+    margin: 0px 3px;
+    padding: 2px 5px;
+    background-color: var(--white);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    font-weight: 800;
+}
+
+.content-part-two {
+    margin: 1rem 2rem 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-part-two>button {
+    border: 1px solid var(--blueviolet);
+    padding: 5px 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: var(--cornsilk);
+    cursor: pointer;
+    color: var(--blueviolet);
+}
+
+.content-part-two>span {
+    margin: 8px 10px 0px 1rem;
+}
+
+.description-input::-webkit-scrollbar {
+    width: 10px;
+}
+
+.description-input::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--gray);
+}
+
+@media screen and (max-width:768px) {
+    .note-sidebar {
+        position: absolute;
+        border-top: 1px solid var(--secondary-color);
+        z-index: 10;
+        display: none;
+        background-color: var(--primary-color);
+        height: calc(100vh - 58px);
+        color: var(--secondary-color);
+        transition: all 0.2s ease-in-out;
+    }
+}
