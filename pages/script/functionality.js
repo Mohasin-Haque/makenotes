@@ -1,4 +1,3 @@
-showNotes();
 let boldBtn = document.getElementById("bold");
 let italicBtn = document.getElementById("italic");
 let underlineBtn = document.getElementById("underline");
@@ -51,59 +50,113 @@ function reset() {
   document.getElementById("note-content").style.textDecoration = "none";
 }
 
-let addBtn = document.getElementById("add-note-button");
-addBtn.addEventListener("click", function (e) {
-  let addHeading = document.getElementById("note-title");
-  let addDescription = document.getElementById("note-content");
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
-  } else {
-    notesObj = JSON.parse(notes);
-  }
-  notesObj.push(addHeading.value, addDescription.value);
-  localStorage.setItem("notes", JSON.stringify(notesObj));
-  addHeading.value = "";
-  addDescription.value = "";
-  console.log(notesObj);
-  showNotes();
-});
+const noteListDiv = document.querySelector(".note-list");
+let noteID = 1;
+function Note(id, title, content) {
+  this.id = id;
+  this.title = title;
+  this.content = content;
+}
 
-function showNotes() {
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
-  } else {
-    notesObj = JSON.parse(notes);
-  }
-  let html = "";
-  notesObj.forEach(function (element, index) {
-    html += `
-        <div id="notes" class="card">
-        <h3 class="note-title">${index + 1}</h3>
-        <p class="note-description">${element}</p>
-        <button id="${index}" class="delete-note-btn" onClick="deleteNote(this.id)">Delete</button>
-    </div>
-        `;
-  });
+// add Event Listeners
 
-  let notesElement = document.getElementById("notes");
-  if (notesObj.legth != 0) {
-    notesElement.innerHTML = html;
-  } else {
-    notesElement.innerHTML = `You have not made any notes. Please add a note to see it here.`;
-    console.log(nothing);
+function eventListeners() {
+  document
+    .getElementById("add-note-button")
+    .addEventListener("click", addNewNote);
+  document.addEventListener("DOMContentLoaded", displayNotes);
+  noteListDiv.addEventListener("click", deleteNote);
+}
+
+// get item from local storage
+function getDataFromLocalStorage() {
+  return localStorage.getItem("notes")
+    ? JSON.parse(localStorage.getItem("notes"))
+    : [];
+}
+
+eventListeners();
+
+// Add New Note
+
+function addNewNote() {
+  const noteTitle = document.getElementById("note-title");
+  const noteContent = document.getElementById("note-content");
+
+  if (ValidateInput(noteTitle, noteContent)) {
+    let notes = getDataFromLocalStorage();
+    let noteItem = new Note(noteID, noteTitle.value, noteContent.value);
+    noteID++;
+    notes.push(noteItem);
+    createNote(noteItem);
+
+    // save to local storage
+    localStorage.setItem("notes", JSON.stringify(notes));
+    noteTitle.value = "";
+    noteContent.value = "";
   }
 }
 
-function deleteNote(index) {
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
+// Validation for empty fields
+
+function ValidateInput(title, content) {
+  if (title.value !== "" && content.value !== "") {
+    return true;
   } else {
-    notesObj = JSON.parse(notes);
+    if (title.value === "") {
+      title.classList.add("warning");
+    }
+    if (content.value === "") {
+      content.classList.add("warning");
+    }
+    setTimeout(() => {
+      title.classList.remove("warning");
+      content.classList.remove("warning");
+    }, 1600);
   }
-  notesObj.splice(index, 1);
-  localStorage.setItem("notes", JSON.stringify(notesObj));
-  showNotes();
+}
+
+// Create a new Note div
+
+function createNote(noteItem) {
+  const div = document.createElement("div");
+  div.classList.add("note-item");
+  div.setAttribute("data-id", noteItem.id);
+  div.innerHTML = ` 
+    <div id="notes" class="card">
+        <h3>${noteItem.title}</h3>
+           <p>${noteItem.content}</p>
+        <button class="delete-note-btn" onClick="deleteNote(this.id)">Delete</button>
+    </div>`;
+  noteListDiv.appendChild(div);
+}
+
+// display all notes from local storage
+
+function displayNotes() {
+  let notes = getDataFromLocalStorage();
+  if (notes.length > 0) {
+    noteID = notes[notes.length - 1].id;
+    noteID++;
+  } else {
+    noteID = 1;
+  }
+  notes.forEach((item) => {
+    createNote(item);
+  });
+}
+
+// delete note
+
+function deleteNote(e) {
+  if (e.target.classList.contains("delete-note-btn")) {
+    e.target.parentElement.remove();
+    let divID = e.target.parentElement.dataset.id;
+    let notes = getDataFromLocalStorage();
+    let newNotesList = notes.filter((item) => {
+      return item.id !== parseInt(divID);
+    });
+    localStorage.setItem("notes", JSON.stringify(newNotesList));
+  }
+  localStorage.removeItem("note");
 }
