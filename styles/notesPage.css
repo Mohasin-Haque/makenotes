@@ -139,6 +139,25 @@
   margin: 1rem;
 }
 
+.note-item h3 {
+  margin-bottom: 1rem;
+}
+
+.note-item p {
+  padding-bottom: 0.8rem;
+}
+
+.note-item .btn {
+  margin-top: 0.8rem;
+  background: #fff;
+  border: 2px solid var(--bittersweet);
+  color: var(--bittersweet);
+}
+
+.warning {
+  border-color: rgba(255, 111, 89, 0.8) !important;
+}
+
 .delete-note-btn {
   margin: 1rem;
   padding: 0.5rem;
